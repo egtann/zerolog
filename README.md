@@ -45,8 +45,8 @@ For simple logging, import the global logger package **github.com/rs/zerolog/log
 package main
 
 import (
-    "github.com/rs/zerolog"
-    "github.com/rs/zerolog/log"
+    "github.com/egtann/zerolog"
+    "github.com/egtann/zerolog/log"
 )
 
 func main() {
@@ -71,8 +71,8 @@ func main() {
 package main
 
 import (
-    "github.com/rs/zerolog"
-    "github.com/rs/zerolog/log"
+    "github.com/egtann/zerolog"
+    "github.com/egtann/zerolog/log"
 )
 
 func main() {
@@ -97,8 +97,8 @@ func main() {
 package main
 
 import (
-    "github.com/rs/zerolog"
-    "github.com/rs/zerolog/log"
+    "github.com/egtann/zerolog"
+    "github.com/egtann/zerolog/log"
 )
 
 func main() {
@@ -133,8 +133,8 @@ package main
 import (
     "flag"
 
-    "github.com/rs/zerolog"
-    "github.com/rs/zerolog/log"
+    "github.com/egtann/zerolog"
+    "github.com/egtann/zerolog/log"
 )
 
 func main() {
@@ -184,8 +184,8 @@ You may choose to log without a specific level by using the `Log` method. You ma
 package main
 
 import (
-    "github.com/rs/zerolog"
-    "github.com/rs/zerolog/log"
+    "github.com/egtann/zerolog"
+    "github.com/egtann/zerolog/log"
 )
 
 func main() {
@@ -207,8 +207,8 @@ package main
 import (
     "errors"
 
-    "github.com/rs/zerolog"
-    "github.com/rs/zerolog/log"
+    "github.com/egtann/zerolog"
+    "github.com/egtann/zerolog/log"
 )
 
 func main() {
