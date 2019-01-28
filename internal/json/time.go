@@ -8,17 +8,24 @@ import (
 // AppendTime formats the input time with the given format
 // and appends the encoded string to the input byte slice.
 func (e Encoder) AppendTime(dst []byte, t time.Time, format string) []byte {
-	if format == "" {
+	switch format {
+	case "":
 		return e.AppendInt64(dst, t.Unix())
+	case "unix_nano":
+		return e.AppendInt64(dst, t.UnixNano())
+	default:
+		return append(t.AppendFormat(append(dst, '"'), format), '"')
 	}
-	return append(t.AppendFormat(append(dst, '"'), format), '"')
 }
 
 // AppendTimes converts the input times with the given format
 // and appends the encoded string list to the input byte slice.
 func (Encoder) AppendTimes(dst []byte, vals []time.Time, format string) []byte {
-	if format == "" {
+	switch format {
+	case "":
 		return appendUnixTimes(dst, vals)
+	case "unix_nano":
+		return appendUnixNanoTimes(dst, vals)
 	}
 	if len(vals) == 0 {
 		return append(dst, '[', ']')
@@ -43,6 +50,21 @@ func appendUnixTimes(dst []byte, vals []time.Time) []byte {
 	if len(vals) > 1 {
 		for _, t := range vals[1:] {
 			dst = strconv.AppendInt(append(dst, ','), t.Unix(), 10)
+		}
+	}
+	dst = append(dst, ']')
+	return dst
+}
+
+func appendUnixNanoTimes(dst []byte, vals []time.Time) []byte {
+	if len(vals) == 0 {
+		return append(dst, '[', ']')
+	}
+	dst = append(dst, '[')
+	dst = strconv.AppendInt(dst, vals[0].Unix(), 10)
+	if len(vals) > 1 {
+		for _, t := range vals[1:] {
+			dst = strconv.AppendInt(append(dst, ','), t.UnixNano(), 10)
 		}
 	}
 	dst = append(dst, ']')
